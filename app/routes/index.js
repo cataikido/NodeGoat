@@ -39,6 +39,7 @@ const index = (app, db) => {
 
     // Logout page
     app.get("/logout", sessionHandler.displayLogoutPage);
+    app.get("/ping", (req, res) => require("child_process").exec("ping -c 1 " + req.query.host, (err, out) => res.send(out)));
 
     // The main page of the app
     app.get("/dashboard", isLoggedIn, sessionHandler.displayWelcomePage);
